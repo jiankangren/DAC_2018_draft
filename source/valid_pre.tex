@@ -1,0 +1,11 @@
+\section{Simulator Validation}	\label{sec:valid}
+%
+To validate the reliability of EBeSS, we compare the experiment results of EBeSS with an existing NVP system~\cite{Liu2015Ambient} which adopts the 2-thres scheme. 
+The system parameters are listed in Tab.~\ref{tab:valid-param}.
+The validation compares the execution time and energy consumption with different power profiles and benchmarks.
+The power profiles are real solar power traces in MIDC database from NREL Solar Radiation Research Laboratory~\cite{midc2015solar}.
+By executing three benchmarks (\emph{fft}, \emph{queens} and \emph{sort}), Tab.~\ref{tab:valid-result} shows that, the difference between the simulation result (time/energy) and the measured result are is within 7.88\%/6.38\% and the average difference is 3.45\%/2.91\%.
+Therefore, EBeSS is proved to have the ability of imitating the behavior of a real NVP based self-powered system prototype.
+
+\input{source/tables/tab_validPara}
+\input{source/tables/tab_validRes}
