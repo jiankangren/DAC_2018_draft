@@ -1,0 +1,80 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
+\input{config/localstyle}
+
+% Copyright
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+% DOI
+\acmDOI{}
+
+% ISBN
+\acmISBN{}
+
+%Conference
+\acmConference[DAC'2018]{}{May 2018}{San Francisco, CA, US} 
+\acmYear{}
+\copyrightyear{}
+
+
+\acmArticle{}
+\acmPrice{}
+
+\begin{document}
+\title{An Energy Behavior Supporting Simulator for Nonvolatile Processor Based Self-powered System.}
+
+\begin{comment}
+\titlenote{Produces the permission block, and
+  copyright information}
+\subtitle{Extended Abstract}
+\subtitlenote{The full version of the author's guide is available as
+  \texttt{acmart.pdf} document}
+\end{comment}
+
+\begin{comment}
+\author{Ben Trovato}
+\authornote{Dr.~Trovato insisted his name be first.}
+\orcid{1234-5678-9012}
+\affiliation{%
+  \institution{Institute for Clarity in Documentation}
+  \streetaddress{P.O. Box 1212}
+  \city{Dublin} 
+  \state{Ohio} 
+  \postcode{43017-6221}
+}
+\email{trovato@corporation.com}
+\end{comment}
+
+% The default list of authors is too long for headers.
+%\renewcommand{\shortauthors}{B. Trovato et al.}
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+%
+Battery-less devices and energy harvesting techniques are more and more attractive in today's IoT area. However, the intermittent and low-intensity ambient power sources cause insecure quality of service (QoS) of these self-powered IoT applications, which makes it essential to pre-simulate the QoS of an self-powered system and its energy managing strategy under various power conditions. Unfortunately, existing simulator lacks of supports on peripherals in a self-powered system and requires great efforts to implement the hardware-based energy managing schemes, such as NVP, DVFS and near-threshold designs. 
+
+This paper proposes EBeSS, an system-level simulator based on GEM5, supporting easy-configurable energy managing strategies on both processor and peripherals. EBeSS develops a configurable simulation object, \textbf{virtual device}, to support the functional and energy-related behaviors of peripherals, and \textbf{energy message handling framework} to support configured energy managing strategies. A real hardware prototype validates that the error of EBeSS is less that xx\%. And a self-powered system design flow is given to reveal the potential of EBeSS on exploring the design space of parameters of a self-powered system (such as capacitor and energy managing scheme) with optimal performance.
+
+\end{abstract}
+
+\maketitle
+
+\input{source/intro}
+\input{source/tech}
+\input{source/valid}
+\input{source/exp}
+\input{source/sum}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references} 
+
+\end{document}
