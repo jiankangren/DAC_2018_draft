@@ -1,112 +1,62 @@
 \section{Design Space Exploration on EBeSS}	\label{sec:exp}
 %
-Based on EBeSS, this section explores the performance of three energy behaviors of NVP and peripherals under unstable power supply profiles.
+EBeSS is an energy-aware simulator supporting peripheral and energy managing strategy configurations for self-powered system.
+With EBeSS, developers can optimize the hardware parameters of self-powered system (such as the capacitor size), and select appropriate energy managing strategy to achieve the maximum task completion performance. 
+This section explores the design space of capacitor and energy managing strategy selection under different power traces and different peripheral numbers.
 
-\begin{figure*}[!htpb]
-	\centering
-	\includegraphics[width=1\textwidth]{ExperimentResults}
-	\vspace{-15pt}
-	\caption{Experiment Results. Figure (a) is the time and energy comparison of the energy behavior schemes executed under the power traces with different duty cycle. Figure (b) compares the execution results by executing 6 benchmarks which has different peripheral occupation. Figure (c)(d)(e) are execution states break downs of the three schemes executing three peripheral-contained benchmarks.}	\label{fig:ExperimentResults}
-	\vspace{-5pt}
-\end{figure*}
-
-
-\subsection{Experiment Settings}	\label{sec:exp-settings}
+\subsection{Capacitor Design Space Considering Peripherals}
 %
-The parameter settings are listed in Tab.~\ref{tab:exp-settings}.
-EBeSS build an ARM based core simulator which executes at 1MHz.
-This simulator contains a 16MB memory and a 2KB register file.
-Three peripherals are connected in this system, that are a temperature sensor, an accelerometer and a radio transmitter.
-The energy consumption values of these devices are listed in Tab.~\ref{tab:exp-settings}.
-The power profiles are square waves with different duty-cycles.
-The sample rate of each power profile is 10kHz.
+In this part, we explore the capacitor design space for self-powered system with different number of peripherals. 
+Based on the \emph{brgMonitor} application, we scale the peripheral number in the application from zero to five, and simulate the completed task number within 10 minutes.
+Figure~\ref{fig:CapVsBenchmark} shows the design space of capacitor size in self-powered system.
+% Explainations.
+From the figure, we observe a design edge for a self-powered system with different occupancy of peripherals to optimize the task completion rate.
 
-Six benchmarks are used to explore the insight of energy behavior designs, as shown in Tab.~\ref{tab:exp-benchmarks}.
-\emph{fft}, \emph{queens} and \emph{sort} are three computing dominated benchmarks which is executed on CPU with a few memory accessing operations.
-\emph{TmpSense}, \emph{AccSense} and \emph{AccTrans} are three peripheral related benchmarks whose I/O operation occupation successively increases.
-
-Three energy behavior schemes are analyzed in the explorations, that are \emph{2-thres}, \emph{DVFS}, and \emph{ModeCvrt}.
-2-thres  is the example given in Sec.~\ref{sec:tech-example}, where two voltage thresholds are defined to manage system power on and off during execution.
-As shown in Fig.~\ref{fig:EnergyBehaviorSchemes} (a), when the supply voltage grows above power-on threshold $V_{\text{on}}$, the system start to work.
-When the supply voltage falls below power-off threshold $V_{\text{off}}$, the system is shutdown.
-DVFS scheme provides three DVFS executing levels from high to low, where the levels with lower voltages are adopted in NVP when power supply voltage reduces. 
-When the supply voltage changes across the thresholds ($V_{\text{d-1}}$, $V_{\text{d-2}}$, $V_{\text{d-3}}$), NVP changes the executing voltage and frequency as shown in Fig.~\ref{fig:EnergyBehaviorSchemes} (b).
-ModeCvrt is a scheme that shuts down different hardware modules when the power supply is not enough.
-There are three working modes and a power off mode.
-When the supply voltage is higher than $V_{\text{m-3}}$, all the modules are active.
-When the supply voltage is between $V_{\text{m-3}}$ and $V_{\text{m-2}}$, the RF transmitter is shutdown.
-When the supply voltage is between $V_{\text{m-2}}$ and $V_{\text{m-1}}$, only the NVP is active and only computing operations are allowed.
-When the supply voltage is below $V_{\text{m-1}}$, the system is powered off.
-
-\input{source/tables/tab_expSettings}
-\input{source/tables/tab_expBenchmarks}
-
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
 	\centering
-	\includegraphics[width=0.5\textwidth]{EnergyBehaviorSchemes}
-	\vspace{-20pt}
-	\caption{The work flow of virtual devices w and w/o power failures.}	\label{fig:EnergyBehaviorSchemes}
 	\vspace{-5pt}
+	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\vspace{-5pt}
+	\caption{The task completion curve of system using multiple peripherals and different capacitor sizes.}	\label{fig:CapVsBenchmark}
 \end{figure}
 
-Based on this simulator and the configurations, we analyzes the performance of these energy behavior designs with different power profiles and applications. 
-
-
-\begin{comment}
-To illustrate the difference among these energy behavior schemes, \emph{TmpSense} is executed peridically in 2 minutes under a real power trace to compare the execution procedure and time.
-%Fig.~\ref{fig:ExperimentResults} (a) shows task progress comparison using these three energy behavior designs.
-Using the 2-thres scheme, the system frequently falls into power failures during execution. 
-287 groups of temperature data are collected in 2 minutes.
-DVFS level reduces the probability of power failures during the execution but induces lower execution speed when supply voltage is low.
-Compared with 2-thres scheme, DVFS enhanced the executing efficiency by 30\%, which collects 373 groups of temperature data.
-The ModeCvrt scheme is designed base on the idea of power gating, which reduces the leakage power when a hardware module is not used.
-In this way, more energy is saved and the data collection efficiency is improve by 21.2\% (347 groups).
-\end{comment}
-
-
-
-
-
-
-
-\subsection{Impact of Power Profiles on Energy Behavior Design}	\label{sec:exp-power}
+\subsection{Explore Energy Managing Strategy Selection}
 %
-Power supply is one of the most critical impact that affect the execution efficiency of the energy behavior schemes.
-By scanning the duty cycle of the square wave, power traces with different energy intensity is generate to power the system.
-Fig.~\ref{fig:ExperimentResults} (a) shows the energy consumption and the execution time to complete the TmpSense benchmark.
-With more efficient power supply, DVFS achieve higher executing speed than the other two schemes.
-An interesting observation is that, although more energy is cost to complete the same task with high DVFS level, DVFS scheme can still achieve higher energy efficiency.
-The reason is that, other schemes waste more energy when the capacitor is fully charged, while DVFS has the ability to take advantage of the sufficient supply power which finally increases the energy efficiency.
+With an optimal hardware platform, this part explores the energy managing strategy selection with different energy supply conditions.
+We scans the combination of different power traces and capacitors, and explores the suitability of different energy managing strategies.
 
-When the energy supply is insufficient, DVFS and ModeCvrt has similar performance to deal with the low power supply.
-With the low DVFS level, the system keeps progress with low CPU power consumption and low execution speed.
-On the other side, ModeCvrt has the ability to use peripheral more energy efficiently by reducing the power leakages when these devices are not executing.
-Generally, compared with 2-thres, DVFS and ModeCvrt has 22.1\% and 17.7\% of performance improvement in averages, and can reduce the power consumption by 24.2\% and 21.9\% in average.
+\textbf{Three energy managing strategy candidates.\ \ }
+We analysis three popular existing energy managing strategies in the energy harvesting system, that is, backup-restore~\cite{Ma2015Architecture}, state-retention~\cite{wang2017a130nm}, and DVFS~\cite{fletcher2017powerDVFS}.
+\begin{itemize}
 
+\item \textbf{State-retention}\\ 
+State retention is a conventional energy managing strategy that all the peripherals enter an ultra-low cost sleep mode when the power supply is not enough.
+During the sleeping stage, the system suffers a leakage power consumption to realize hardware states retention in the volatile memories.
 
+\item \textbf{DVFS}\\ 
+DVFS is an energy managing strategy used to dynamically adjust the system performance according to energy supply condition.
+DVFS enables the system to execute at lower speed with lower energy consumption when the energy supply is limited, and execute at higher speed when the energy supply is sufficient.
 
+\item \textbf{Backup-restore}\\ 
+Backup-restore is a zero-leakage energy managing strategy that can bridge across power failure conditions by backing up and restoring the volatile execution states into nonvolatile memories. 
+By moving the states into nonvolatile memory, the system can be safely shutdown to avoid leakage power during the outages and is most reliable in energy harvesting systems.
 
+\end{itemize}
 
+From the definition of the three energy managing strategies, it is obvious that, the performance of these strategies is affected by the system energy supply, which is determined the power trace and the system capacitor size.
+Therefore, we explore the search space of the combination of power trace and capacitor size.
+Figure~\ref{fig:HotpotGraph} (a-c) shows the performance hotpot graph when executing the \emph{brgMonitor} benchmark using each of these strategies.
+% Explanations
+Comparing the performance hotpot graph of these energy managing strategies, Figure~\ref{fig:HotpotGraph} (d) shows the distribution of the optimal energy managing strategy selection.
+We can conclude that ...  
 
-\subsection{Impact of Applications on Energy Behavior Design}	\label{sec:exp-app}
-%
-Application is another important factor that affect the executing performance and energy efficiency of the energy behaviors.
-Applications in the energy harvesting system contains the computing operations executed on NVP and the I/O operations executed on the peripherals.
-Since the energy behavior schemes have different adjustment priorities, applications with different I/O operation occupations will have different performance improvements adopting these energy behavior designs.
-
-In this part, benchmark with different I/O operation occupations are used.
-Fig.~\ref{fig:ExperimentResults} (b) shows the time and energy comparison of the energy behavior schemes with these benchmarks.
-Results show that, with more peripherals used, ModeCvrt has significant energy saving and executing speed improvements.
-In this condition, DVFS has little improvements because the power consumption of NVP is not dominating when more peripherals are used.
-DVFS is superior in executing the pure computing benchmarks because its objective is to adjust the execution states of the processor.
-However, with no peripheral, ModeCvrt lose its advantages to execute the computing tasks and has similar performance with 2-thres.
-
-Fig.~\ref{fig:ExperimentResults} (c-f) show the execution state breakdowns of the three energy behavior schemes executing three benchmarks.
-2-thres scheme leads to lots of power failures more than other two modules.
-Because of large energy consumption, AccTrans spends most of the time in power off mode to charge the energy storages.
-DVFS is also affected by peripherals.
-Although DVFS focus on the execution of CPU, more peripherals affect the total energy consumption and leads to more low voltage execution time.
-ModeCvrt performs better because the power gating strategy is more suitable for the peripherals by reducing the peripheral leakages.
+\begin{figure}[!htpb]
+	\centering
+	\vspace{-5pt}
+	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\vspace{-5pt}
+	\caption{The task completion curve of system using multiple peripherals and different capacitor sizes.}	\label{fig:HotpotGraph}
+\end{figure}
 
 \subsection{Exploration Conclusion}	\label{sec:exp-sum}
 %
@@ -115,3 +65,8 @@ Results show that, DVFS has the ability to take better usage of the too low and 
 On the other side, ModeCvrt and DVFS have the advantages in adjusting the energy usage of CPU and peripherals, respectively.
 When the computing operations is dominating, DVFS has better performance to take fully usage of power supply.
 When the I/O operations are dominating, ModeCvrt is the better choice to avoid the leakages of the idle peripherals.
+
+\begin{comment}
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references} 
+\end{comment}

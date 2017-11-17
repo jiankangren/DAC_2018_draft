@@ -17,14 +17,14 @@ Although provided usable simulation approaches for processor and software energy
 Firstly, these simulators cannot support the functional and energy-related behaviors of peripherals.
 Peripherals, such as sensors, radio transceivers and accelerators, are playing irreplaceable roles in IoT area by taking charge of the interconnections between the system and the environment, and improve the QoS. 
 With intermittent power supply, these external hardware modules may cause inconsistency problems and needs to be safely recovered after sudden outages.
-Secondly, neither RTL-level simulation~\cite{Ma2015Architecture} nor NVPsim~\cite{gu2016nvpsim} supports flexible and easy configured hardware energy managing techniques such as NVP~\cite{wang20123us} and dynamic voltage-frequency scaling (DVFS)~\cite{}.
+Secondly, neither RTL-level simulation~\cite{Ma2015Architecture} nor NVPsim~\cite{gu2016nvpsim} supports flexible and easy configured hardware energy managing techniques such as NVP~\cite{wang20123us} and dynamic voltage-frequency scaling (DVFS)~\cite{fletcher2017powerDVFS}.
 
 %
 Focus on these problems, this paper proposes EBeSS, an \underline{\textbf{E}}nergy \underline{\textbf{Be}}havior \underline{\textbf{S}}upporting \underline{\textbf{S}}ystem-level simulator to explore the design space of a NVP based self-powered device.
 %This paper presents the structure of the simulator and executes design space explorations on three existing energy behavior schemes.
 The contributions are listed as follows,
 \begin{itemize}
-	\item Based on GEM5, EBeSS provides a configurable virtual device module to support the simulation of a variety of peripherals; 
+	\item EBeSS provides a configurable virtual device module to support the different kinds of peripherals; 
 
      \item EBeSS realizes flexible and friendly hardware energy managing behavior supports with the help of the energy message handling (EMH) framework to realize and manage  the energy-related behaviors of each hardware module; 
 
@@ -32,10 +32,10 @@ The contributions are listed as follows,
 \end{itemize}
 
 The rest of the paper is organized as follows.
-Sec.~\ref{sec:tech} proposes the architecture of the simulator and introduces the two techniques used to support the energy behavior exploration of NVP and peripherals.
-Sec.~\ref{sec:valid} validates the functionality of EBeSS with a real NVP based self-powered system prototype.
-Sec.~\ref{sec:exp} explores the performance of different energy behaviors with various power supply profile and application types.
-Finally, Sec.~\ref{sec:sum} summarizes the whole paper and looks ahead for more advanced usages of EBeSS.
+Section~\ref{sec:tech} proposes the architecture of the simulator and introduces the two techniques used to support the energy behavior exploration of NVP and peripherals.
+%Section~\ref{sec:valid} validates the functionality of EBeSS with a real NVP based self-powered system prototype.
+Section~\ref{sec:exp} explores the performance of different energy behaviors with various power supply profile and application types.
+%Finally, Section~\ref{sec:sum} summarizes the whole paper and looks ahead for more advanced usages of EBeSS.
 
 \begin{comment}
   \bibliographystyle{ACM-Reference-Format}

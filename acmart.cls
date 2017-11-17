@@ -440,7 +440,7 @@ Computing Machinery]
       urlcolor=ACMDarkBlue,
       filecolor=ACMDarkBlue}
     \else
-    %\hypersetup{hidelinks}
+    \hypersetup{hidelinks}
   \fi}
 \if@ACM@natbib
   \let\citeN\cite
@@ -1055,7 +1055,8 @@ Computing Machinery]
   \ifx\acmConference@shortname\@empty
     \gdef\acmConference@shortname{#2}%
   \fi}
-\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington, DC, USA}
+\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington,
+  DC, USA}
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
 \acmBooktitle{Proceedings of \acmConference@name
        \ifx\acmConference@name\acmConference@shortname\else
@@ -2077,7 +2078,6 @@ Computing Machinery]
     \fi
    \ignorespaces\@abstract\par}%
   \fi\egroup}
-\iffalse
 \def\@mkbibcitation{\bgroup
   \def\@pages@word{\ifnum\getrefnumber{TotPages}=1\relax page\else pages\fi}%
   \def\footnotemark{}%
@@ -2104,7 +2104,6 @@ Computing Machinery]
   \fi
   \@formatdoi{\@acmDOI}
 \par\egroup}
-\fi
 \def\@printendtopmatter{\par\bigskip}
 \def\@setthanks{\long\def\thanks##1{\par##1\@addpunct.}\thankses}
 \def\@setauthorsaddresses{\@authorsaddresses\unskip\@addpunct.}
