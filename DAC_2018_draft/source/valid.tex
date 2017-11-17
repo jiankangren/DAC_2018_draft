@@ -1,0 +1,56 @@
+\section{Simulator Validation}	\label{sec:valid}
+%
+To validate the correctness and accuracy of EBeSS, we compare the execution parameters of EBeSS with a real NVP-based system prototype~\cite{wang2017a130nm} as shown in Figure~\ref{fig:HardwarePrototype}.
+A bridge monitoring application and several independent tasks are executed to compare the performance and energy parameters.
+
+% hardware parameters
+\subsection{System configurations}
+The configuration of the system prototype is listed in Table~\ref{}. 
+This prototype is an solar-powered system, which contains a nonvolatile processor (NVP)~\cite{wang20123us,Liu2015Ambient}, a nonvolatile radio transmitter (NVRF)~\cite{wang2017a130nm} and several volatile sensors.
+
+\begin{figure}[!htpb]
+	\centering
+	\vspace{-5pt}
+	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\vspace{-5pt}
+	\caption{The hardware prototype used to validate EBeSS simulator. XXX.}	\label{fig:HardwarePrototype}
+\end{figure}
+
+NVP enables a two-threshold backup/restore energy managing strategy (\emph{2-thr})~\cite{wang20123us,gu2016nvpsim}, where a lower threshold $V_{low}$ and a higher threshold $V_{high}$ are defined.
+When the supply voltage falls below $V_{low}$, the processor immediately backup the execution status to NVM with the help of a control circuit.
+When the supply voltage raises above $V_{high}$, the processor restarts and restores all the states and keep on progress.
+
+NVRF is a nonvolatile interface that can automatically recover the radio transmitter and retransmit the uncompleted packet transmission after outages.
+Inheriting the two voltage thresholds in \emph{2-thr}, NVRF can backup the configurations of the radio transmitter when the voltage is lower than $V_{low}$, and will reinitialize the transmitter states, resume the configurations and restart the uncompleted transmission.
+
+In addition, the prototype also contains a thermometer and an accelerometer. 
+The capacitor is $15uF$. 
+All the above hardware parameters are listed in Table~\ref{}.
+The power profiles are solar power traces from MIDC database of NREL Solar Radiation Research Laboratory~\cite{midc2015solar}.
+
+% hardware parameters
+\subsection{Application Validation}
+We compare the simulation result with the hardware execution result using a real IoT application, bridge monitoring application (\emph{brgMonitor}).
+The work flow of \emph{brgMonitor} is shown in Figure~\ref{fig:BrgMonitor}.
+The device executes a 'sense-process-transmit' cycle to collect bridge health related parameters.
+The execution time and energy consumption comparison is shown in Table~\ref{}.
+% The error is ...
+
+\begin{figure}[!htpb]
+	\centering
+	\vspace{-5pt}
+	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\vspace{-5pt}
+	\caption{The working flow and parameters of \emph{brgMonitor} benchmark.}	\label{fig:BrgMonitor}
+\end{figure}
+
+Furthermore, we also evaluate the correctness of EBeSS with multiple small tasks in Table~\ref{}.
+The maximum error is limited within XXX.
+
+%\input{source/tables/tab_validPara}
+%\input{source/tables/tab_validRes}
+
+\begin{comment}
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references} 
+\end{comment}

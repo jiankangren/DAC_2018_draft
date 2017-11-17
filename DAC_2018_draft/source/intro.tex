@@ -1,0 +1,43 @@
+\section{Introduction}	\label{sec:intro}
+%
+Battery-less devices are more and more popular in today's IoT area for its light-weight charge-free energy supply system and long lifetime.
+However, the energy supply quality of these devices is insecure according to different energy sources and different working environment.
+For instance, solar-power is the most popular ambient energy source, whose power supply intensity various within orders of micro-watt to milliwatt according to the time, season, weather condition, altitude, location (indoor/outdoor) and etc. 
+Therefore, developers need to evaluate the quality of service (QoS) of a self-powered system under specific power supply condition before developing an energy harvesting application.
+Without proper software simulator, developers have to implement a hardware prototype with appropriate energy managing strategies to realize evaluate quality of service (QoS), which costs unacceptable efforts and time.
+
+%
+To tackle this problem, previous works develop different simulation strategies for different types of self-powered devices.
+Target the systems with pure software energy managing and scheduling algorithms, EDB~\cite{Colin2016An} proposes an energy supporting debugger to simulate the performance of intermittent powered devices.
+For the devices with hardware optimizations, such nonvolatile processor (NVP)~\cite{wang20123us,wang2017a,Su2016A,Liu2015Ambient}, NVIO~\cite{li2016hw}, NVRF~\cite{wang2017a130nm}, and near-threshold circuits~\cite{}, Ma et al.~\cite{Ma2015Architecture} provides a simulating strategy based on verilog source code to process register-transfer level (RTL) evaluation.
+Furthermore, Gu et al.~\cite{gu2016nvpsim} models the architecture and energy managing behaviors of NVP~\cite{wang20123us} and proposes NVPsim, a simulator based on GEM5 to explore the processor-level parameter design space of NVP.
+
+%
+Although provided usable simulation approaches for processor and software energy managing algorithms, the above mentioned simulation tools has two main draw backs. 
+Firstly, these simulators cannot support the functional and energy-related behaviors of peripherals.
+Peripherals, such as sensors, radio transceivers and accelerators, are playing irreplaceable roles in IoT area by taking charge of the interconnections between the system and the environment, and improve the QoS. 
+With intermittent power supply, these external hardware modules may cause inconsistency problems and needs to be safely recovered after sudden outages.
+Secondly, neither RTL-level simulation~\cite{Ma2015Architecture} nor NVPsim~\cite{gu2016nvpsim} supports flexible and easy configured hardware energy managing techniques such as NVP~\cite{wang20123us} and dynamic voltage-frequency scaling (DVFS)~\cite{fletcher2017powerDVFS}.
+
+%
+Focus on these problems, this paper proposes EBeSS, an \underline{\textbf{E}}nergy \underline{\textbf{Be}}havior \underline{\textbf{S}}upporting \underline{\textbf{S}}ystem-level simulator to explore the design space of a NVP based self-powered device.
+%This paper presents the structure of the simulator and executes design space explorations on three existing energy behavior schemes.
+The contributions are listed as follows,
+\begin{itemize}
+	\item EBeSS provides a configurable virtual device module to support the different kinds of peripherals; 
+
+     \item EBeSS realizes flexible and friendly hardware energy managing behavior supports with the help of the energy message handling (EMH) framework to realize and manage  the energy-related behaviors of each hardware module; 
+
+	\item With EBeSS, we provides an example of self-powered system developing and optimizing procedure by exploring the design space of capacitor and energy managing strategy selection with different power traces and benchmarks. The analysis reveals an optimal design edge to improve the performance of self-powered systems.
+\end{itemize}
+
+The rest of the paper is organized as follows.
+Section~\ref{sec:tech} proposes the architecture of the simulator and introduces the two techniques used to support the energy behavior exploration of NVP and peripherals.
+%Section~\ref{sec:valid} validates the functionality of EBeSS with a real NVP based self-powered system prototype.
+Section~\ref{sec:exp} explores the performance of different energy behaviors with various power supply profile and application types.
+%Finally, Section~\ref{sec:sum} summarizes the whole paper and looks ahead for more advanced usages of EBeSS.
+
+\begin{comment}
+  \bibliographystyle{ACM-Reference-Format}
+  \bibliography{references}
+\end{comment}

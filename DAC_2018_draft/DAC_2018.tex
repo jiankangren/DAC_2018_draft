@@ -1,0 +1,74 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
+\input{config/localstyle}
+
+% Copyright
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+% DOI
+\acmDOI{}
+
+% ISBN
+\acmISBN{}
+
+%Conference
+\acmConference[DAC'2018]{}{May 2018}{San Francisco, CA, US} 
+\acmYear{}
+\copyrightyear{}
+
+
+\acmArticle{}
+\acmPrice{}
+
+\begin{document}
+\title{An Energy Behavior Supporting Simulator for Nonvolatile Processor Based Self-powered System.}
+
+\begin{comment}
+\titlenote{Produces the permission block, and
+  copyright information}
+\subtitle{Extended Abstract}
+\subtitlenote{The full version of the author's guide is available as
+  \texttt{acmart.pdf} document}
+\end{comment}
+
+\begin{comment}
+\author{Ben Trovato}
+\authornote{Dr.~Trovato insisted his name be first.}
+\orcid{1234-5678-9012}
+\affiliation{%
+  \institution{Institute for Clarity in Documentation}
+  \streetaddress{P.O. Box 1212}
+  \city{Dublin} 
+  \state{Ohio} 
+  \postcode{43017-6221}
+}
+\email{trovato@corporation.com}
+\end{comment}
+
+% The default list of authors is too long for headers.
+%\renewcommand{\shortauthors}{B. Trovato et al.}
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\input{source/abs}
+
+\maketitle
+
+\input{source/intro}
+\input{source/tech}
+\input{source/valid}
+\input{source/exp}
+\input{source/sum}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references} 
+
+\end{document}
