@@ -55,7 +55,7 @@ When a task (collecting a data) is completed, the peripheral will trigger an int
 \begin{figure}[!htpb]
 	\centering
 	\vspace{-5pt}
-	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\includegraphics[width=0.5\textwidth]{PeripheralModel}
 	\vspace{-5pt}
 	\caption{The structure model (a) and a typical working flow (b) of common digital peripherals.}	\label{fig:PeripheralModel}
 \end{figure}
@@ -69,7 +69,7 @@ In the control byte, four bits are used to control the executing status of perip
 \emph{addr1} is a configurable \emph{init} bit to trigger the initialization operation.
 \emph{addr2} is a read-only \emph{ready} bit representing whether a device is initialized.
 \emph{addr5} is a read-only \emph{complete} bit and will be set and trigger an interrupt to the processor, when a virtual device operation is finished.
-\emph{addr5} is a read-only \emph{busy} bit representing whether the device is during execution and is not accessible if the bit is set.
+\emph{addr6} is a read-only \emph{busy} bit representing whether the device is during execution and is not accessible if the bit is set.
 \emph{addr7} is a configurable bit set by CPU to make a request to a virtual device.
 
 EBeSS requires users to modify peripheral-related programs to suit the design of virtual device.
@@ -84,9 +84,9 @@ When the sensing task is completed, the processor checks the \emph{complete} sta
 \begin{figure}[!htpb]
 	\centering
 	\vspace{-5pt}
-	\includegraphics[width=0.4\textwidth]{VirtualDeviceAddress}
+	\includegraphics[width=0.5\textwidth]{VirtualDevice}
 	\vspace{-5pt}
-	\caption{The bit-level explanation of virtual device address definition.}	\label{fig:VirtualDevice}
+	\caption{Structure of virtual device object and an example program of a temperature sensor.}	\label{fig:VirtualDevice}
 \end{figure}
 
 \subsection{Energy Message Handling Framework (EMHF)}	\label{sec:tech-EMHF}
@@ -115,9 +115,9 @@ When the supply voltage in the storage reaches certain thresholds, EMM determine
 \begin{figure}[!htpb]
 	\centering
 	\vspace{-5pt}
-	\includegraphics[width=0.35\textwidth]{EnergyManagementModule}
+	\includegraphics[width=0.5\textwidth]{EnergyManagementModule}
 	\vspace{-10pt}
-	\caption{The structure and work flow of the energy management module.}		\label{fig:EnergyManagementModule}
+	\caption{The structure of EMM and energy object.}		\label{fig:EnergyManagementModule}
 \end{figure}
 
 \textbf{Reactor: Energy Object.\ \ }
