@@ -55,7 +55,7 @@ When a task (collecting a data) is completed, the peripheral will trigger an int
 \begin{figure}[!htpb]
 	\centering
 	\vspace{-5pt}
-	\includegraphics[width=0.5\textwidth]{PeripheralModel}
+	\includegraphics[width=0.48\textwidth]{PeripheralModel}
 	\vspace{-5pt}
 	\caption{The structure model (a) and a typical working flow (b) of common digital peripherals.}	\label{fig:PeripheralModel}
 \end{figure}
@@ -89,9 +89,9 @@ When the sensing task is completed, the processor checks the \emph{complete} sta
 	\caption{Structure of virtual device object and an example program of a temperature sensor.}	\label{fig:VirtualDevice}
 \end{figure}
 
-\subsection{Energy Message Handling Framework (EMHF)}	\label{sec:tech-EMHF}
+\subsection{Energy Message Handling Framework}	\label{sec:tech-EMHF}
 % Overview
-EMHF is a message-based event handling framework to support the energy managing strategies in a self-powered system.
+Energy message handling framework (EMHF) is a message-based event handling framework to support the energy managing strategies in a self-powered system.
 The framework consists of three components: the informer, the connector and the reactor, as shown in Figure~\ref{fig:EngyMsgFrameworkStructure}. 
 With these components, EMHF realize the functionality of energy harvesting, monitoring and all the detailed energy-related behaviors of each hardware component according to energy managing strategies.
 
